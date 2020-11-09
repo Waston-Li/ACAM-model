@@ -6,12 +6,12 @@ from keras.preprocessing.sequence import pad_sequences
 pad_value = {'movie':0,'music':19981}
 
 def load_data(args):
-    ent_embed=np.load('../data/'+args.dataset+'/pretrained_embeddings/ent_embed'+str(200)+'.npy')
+    ent_embed=np.load('../data/'+args.dataset+'/pretrained_embeddings/ent_embed'+str(50)+'.npy')
     item_attr_set = np.load('../data/' + args.dataset + '/pretrained_embeddings/item_attr_set.npy')
     train = np.load('../data/' + args.dataset + '/data/train.npy', allow_pickle=True).tolist()
     print(len(train))
     test=np.load('../data/'+args.dataset+'/data/test.npy', allow_pickle=True).tolist()[0:520650]
-    args.num_attrs = torch.from_numpy(np.load('../data/'+args.dataset+'/pretrained_embeddings/attr_embed'+str(200)+'.npy')).cuda().size(0)
+    args.num_attrs = torch.from_numpy(np.load('../data/'+args.dataset+'/pretrained_embeddings/attr_embed'+str(50)+'.npy')).cuda().size(0)
 
     if(args.dataset == 'music'):
         ent_embed=np.row_stack((ent_embed,ent_embed[-1]))
